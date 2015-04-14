@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SettingsX</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_general">General</string>
+    <string name="nav_item_advanced">Advanced</string>
+    <string name="nav_item_device">Device</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_general</item>
+        <item>@string/nav_item_advanced</item>
+        <item>@string/nav_item_device</item>
+    </string-array>
+</resources>
