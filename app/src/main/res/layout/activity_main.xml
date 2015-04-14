@@ -22,10 +22,16 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                local:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                android:minHeight="?attr/actionBarSize"
+                local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+            <View
+                android:id="@+id/toolbar_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/shadow" />
 
         </LinearLayout>
 
@@ -38,14 +44,12 @@
 
     </LinearLayout>
 
-
     <fragment
         android:id="@+id/fragment_navigation_drawer"
         android:name="io.geeteshk.settingsx.DrawerFragment"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:layout_marginTop="?attr/actionBarSize"
         app:layout="@layout/fragment_drawer"
         tools:layout="@layout/fragment_drawer" />
 

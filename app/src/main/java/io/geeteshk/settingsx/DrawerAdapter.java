@@ -1,11 +1,11 @@
 package io.geeteshk.settingsx;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Collections;
@@ -34,9 +34,8 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.CustomHold
     @Override
     public void onBindViewHolder(DrawerAdapter.CustomHolder customHolder, int i) {
         DrawerItem currentItem = mItems.get(i);
-        Typeface light = Typeface.createFromAsset(mContext.getAssets(), "Roboto-Light.ttf");
         customHolder.mTitle.setText(currentItem.getTitle());
-        customHolder.mTitle.setTypeface(light);
+        customHolder.mIcon.setImageDrawable(currentItem.getIcon());
     }
 
     @Override
@@ -46,10 +45,12 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.CustomHold
 
     class CustomHolder extends RecyclerView.ViewHolder {
 
+        ImageView mIcon;
         TextView mTitle;
 
         public CustomHolder(View view) {
             super(view);
+            mIcon = (ImageView) view.findViewById(R.id.nav_icon);
             mTitle = (TextView) view.findViewById(R.id.title);
         }
     }

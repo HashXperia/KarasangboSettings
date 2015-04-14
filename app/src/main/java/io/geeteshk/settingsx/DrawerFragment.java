@@ -1,6 +1,7 @@
 package io.geeteshk.settingsx;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,35 +22,43 @@ import java.util.List;
 
 public class DrawerFragment extends Fragment {
 
+    private static String[] mTitles;
+    private static int[] mResources;
+    private static List<Drawable> mIcons = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private ActionBarDrawerToggle mToggle;
     private DrawerLayout mDrawerLayout;
     private DrawerAdapter mAdapter;
     private View mView;
-    private static String[] mTitles;
     private DrawerListener mListener;
 
     public DrawerFragment() {
     }
 
-    public void setListener(DrawerListener listener) {
-        mListener = listener;
-    }
-
     public static List<DrawerItem> getItems() {
         List<DrawerItem> items = new ArrayList<>();
-        for (String title : mTitles) {
+        for (int i = 0; i < mTitles.length; i++) {
             DrawerItem item = new DrawerItem();
-            item.setTitle(title);
+            item.setTitle(mTitles[i]);
+            item.setIcon(mIcons.get(i));
             items.add(item);
         }
 
         return items;
     }
 
+    public void setListener(DrawerListener listener) {
+        mListener = listener;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mResources = new int[]{R.drawable.ic_general, R.drawable.ic_advanced, R.drawable.ic_device};
+        for (int resource : mResources) {
+            mIcons.add(getActivity().getResources().getDrawable(resource));
+        }
+
         mTitles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);
     }
 
@@ -107,7 +116,6 @@ public class DrawerFragment extends Fragment {
         };
 
         mDrawerLayout.setDrawerListener(mToggle);
-        mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
         mDrawerLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -120,6 +128,11 @@ public class DrawerFragment extends Fragment {
 
         public void onClick(View view, int position);
         public void onLongClick(View view, int position);
+    }
+
+    public interface DrawerListener {
+
+        public void onDrawerItemSelected(View view, int position);
     }
 
     static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
@@ -158,10 +171,5 @@ public class DrawerFragment extends Fragment {
         @Override
         public void onTouchEvent(RecyclerView rv, MotionEvent e) {
         }
-    }
-
-    public interface DrawerListener {
-
-        public void onDrawerItemSelected(View view, int position);
     }
 }

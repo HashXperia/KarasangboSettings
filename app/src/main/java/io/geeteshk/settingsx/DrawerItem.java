@@ -1,14 +1,19 @@
 package io.geeteshk.settingsx;
 
+import android.graphics.drawable.Drawable;
+
 public class DrawerItem {
 
     private boolean mShowNotify;
+    private Drawable mIcon;
     private String mTitle;
 
-    public DrawerItem() {}
+    public DrawerItem() {
+    }
 
-    public DrawerItem(boolean showNotify, String title) {
+    public DrawerItem(boolean showNotify, Drawable icon, String title) {
         mShowNotify = showNotify;
+        mIcon = icon;
         mTitle = title;
     }
 
@@ -18,6 +23,14 @@ public class DrawerItem {
 
     public void setShowNotify(boolean showNotify) {
         mShowNotify = showNotify;
+    }
+
+    public Drawable getIcon() {
+        return mIcon;
+    }
+
+    public void setIcon(Drawable icon) {
+        mIcon = icon;
     }
 
     public String getTitle() {
