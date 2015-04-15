@@ -6,7 +6,7 @@
         <item name="windowActionBar">false</item>
         <item name="colorPrimary">#2196F3</item>
         <item name="colorPrimaryDark">#1976D2</item>
-        <item name="colorAccent">#FFFF00</item>
+        <item name="colorAccent">#FF5252</item>
     </style>
 
 </resources>

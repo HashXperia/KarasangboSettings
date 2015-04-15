@@ -40,6 +40,15 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        FontsOverride.setDefaultFont(this, "MONOSPACE", "Roboto-Medium.ttf");
+        if (Utils.isDeviceRooted()) {
+            Utils.getRootAccess();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
