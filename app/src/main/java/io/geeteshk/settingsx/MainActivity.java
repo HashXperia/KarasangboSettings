@@ -43,9 +43,6 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
     protected void onStart() {
         super.onStart();
         FontsOverride.setDefaultFont(this, "MONOSPACE", "Roboto-Medium.ttf");
-        if (Utils.isDeviceRooted()) {
-            Utils.getRootAccess();
-        }
     }
 
     @Override

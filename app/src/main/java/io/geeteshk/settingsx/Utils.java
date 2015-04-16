@@ -1,30 +1,34 @@
 package io.geeteshk.settingsx;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Utils {
 
-    public static boolean isDeviceRooted() {
-        String[] places = {
-                "/sbin/", "/system/bin/", "/system/xbin/",
-                "/data/local/xbin/", "/data/local/bin/",
-                "/system/sd/xbin/", "/system/bin/failsafe/", "/data/local/"
-        };
+    public static String readOneLine(String sysFile) {
+        Runtime runtime = Runtime.getRuntime();
+        String cmd = "su -c cat " + sysFile;
+        try {
+            Process process = runtime.exec(cmd);
+            BufferedReader stdInput = new BufferedReader(new
+                    InputStreamReader(process.getInputStream()));
 
-        for (String where : places) {
-            if (new File(where + "su").exists()) {
-                return true;
-            }
+            return stdInput.readLine();
+        } catch (IOException ie) {
+            ie.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 
-    public static void getRootAccess() {
+    public static void writeValue(String filename, String value) {
+        Runtime runtime = Runtime.getRuntime();
+        String cmd = "su -c echo " + value + " > " + filename;
         try {
-            Process process = Runtime.getRuntime().exec("su");
-        } catch (Exception e) {
-            e.printStackTrace();
+            runtime.exec(cmd);
+        } catch (IOException ie) {
+            ie.printStackTrace();
         }
     }
 }

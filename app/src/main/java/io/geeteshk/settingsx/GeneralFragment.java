@@ -15,8 +15,8 @@ import java.io.File;
 
 public class GeneralFragment extends Fragment {
 
-    private int vibratorLevel = -1;
-    private String vibratorPath = "";
+    int vibratorLevel = -1;
+    String vibratorPath = "";
 
     public GeneralFragment() {
     }
@@ -29,17 +29,17 @@ public class GeneralFragment extends Fragment {
         final TextView vibratorValue = (TextView) rootView.findViewById(R.id.vibrator_value);
 
         if (new File(Constants.VIBRATOR_LEVEL).exists()) {
-            vibratorLevel = 0; // TODO: Set this value later
+            vibratorLevel = Integer.valueOf(Utils.readOneLine(Constants.VIBRATOR_LEVEL));
             vibratorPath = Constants.VIBRATOR_LEVEL;
-        } else if (new File(Constants.VIBRATOR_LEVEL_Z3).exists()) {
-            vibratorLevel = 0; // TODO: Set this one too
-            vibratorPath = Constants.VIBRATOR_LEVEL_Z3;
+        } else if (new File(Constants.VIBRATOR_LEVEL_VTG).exists()) {
+            vibratorLevel = Integer.valueOf(Utils.readOneLine(Constants.VIBRATOR_LEVEL_VTG));
+            vibratorPath = Constants.VIBRATOR_LEVEL_VTG;
         }
 
         if (vibratorLevel == -1) {
             vibratorBar.setEnabled(false);
             vibratorValue.setText("-");
-            vibratorValue.setTextColor(getActivity().getResources().getColor(android.R.color.darker_gray));
+            vibratorValue.setTextColor(getActivity().getResources().getColor(android.R.color.background_light));
         } else {
             vibratorBar.setProgress(vibratorLevel);
             vibratorValue.setText(String.valueOf(vibratorLevel));
@@ -49,24 +49,31 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 vibratorValue.setText(String.valueOf(progress));
+                if (vibratorLevel != -1) {
+                    if (vibratorPath.equals(Constants.VIBRATOR_LEVEL)) {
+                        Utils.writeValue(vibratorPath, String.valueOf(seekBar.getProgress()));
+                    } else if (vibratorPath.equals(Constants.VIBRATOR_LEVEL_VTG)) {
+                        Utils.writeValue(vibratorPath, String.valueOf(getVtgLevel(seekBar.getProgress())));
+                    }
+                }
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if (vibratorLevel != -1) {
-                    // TODO: Find a way to set value
-                }
-
                 Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(500);
             }
         });
 
         return rootView;
+    }
+
+    private int getVtgLevel(int percentage) {
+        // TODO: This function is temporary until we learn more about vtg_level
+        return ((19 * percentage) / 100) + 12;
     }
 }
