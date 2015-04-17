@@ -108,30 +108,7 @@ public class DeviceFragment extends Fragment {
                     break;
                 case 4:
                     infoTitle.setText("Android version");
-                    try {
-                        process = Runtime.getRuntime().exec("getprop ro.build.version.release");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    ver0=process.getInputStream();
-                    ver1 = new InputStreamReader(ver0);
-                    ver=new StringBuilder();
-                    ver2 = new BufferedReader(ver1);
-                    try {
-                        sb = ver2.readLine();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    while(sb != null) {
-                        ver.append(sb);
-                        try {
-                            sb =ver2.readLine();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                    infoText.setText(ver.toString());
+                    infoText.setText(Build.VERSION.RELEASE);
                     break;
                 case 5:
                     infoTitle.setText("Build ID");
