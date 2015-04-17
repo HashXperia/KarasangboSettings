@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -63,10 +64,6 @@ public class GeneralFragment extends Fragment {
             vibratorValue.setText(String.valueOf(vibratorLevel));
         }
 
-        if (dt2w_val == -1) {
-            dt2w.setClickable(false);
-        }
-
         vibratorBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -92,12 +89,18 @@ public class GeneralFragment extends Fragment {
         });
 
         dt2w.setOnClickListener(new View.OnClickListener() {
-
+            @Override
             public void onClick(View v) {
-                if (dt2w.isChecked() == true) {
-                    Utils.writeValue(dt2wPath, "1");
-                } else {
-                    Utils.writeValue(dt2wPath, "0");
+                if (dt2w_val == -1) {
+                    dt2w.setChecked(false);
+                    Toast.makeText(getActivity(), "This feature is not supported by kernel", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (dt2w.isChecked() == true) {
+                        Utils.writeValue(dt2wPath, "1");
+                    } else {
+                        Utils.writeValue(dt2wPath, "0");
+                    }
                 }
             }
         });
