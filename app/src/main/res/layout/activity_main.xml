@@ -17,8 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.Toolbar
-                xmlns:local="http://schemas.android.com/apk/res-auto"
+            <android.support.v7.widget.Toolbar xmlns:local="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,12 +26,6 @@
                 local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-            <View
-                android:id="@+id/toolbar_shadow"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@drawable/shadow" />
-
         </LinearLayout>
 
         <FrameLayout
@@ -40,7 +33,6 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
-
 
     </LinearLayout>
 
