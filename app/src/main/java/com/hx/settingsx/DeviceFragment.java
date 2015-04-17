@@ -12,6 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class DeviceFragment extends Fragment {
@@ -85,26 +89,22 @@ public class DeviceFragment extends Fragment {
                     infoText.setText(Build.HARDWARE);
                     break;
                 case 7:
-                    infoTitle.setText("Host");
-                    infoText.setText(Build.HOST);
-                    break;
-                case 8:
-                    infoTitle.setText("ID");
+                    infoTitle.setText("Build ID");
                     infoText.setText(Build.ID);
                     break;
-                case 9:
+                case 8:
                     infoTitle.setText("Manufacturer");
                     infoText.setText(Build.MANUFACTURER);
                     break;
-                case 10:
+                case 9:
                     infoTitle.setText("Model");
                     infoText.setText(Build.MODEL);
                     break;
-                case 11:
+                case 10:
                     infoTitle.setText("Product");
                     infoText.setText(Build.PRODUCT);
                     break;
-                case 12:
+                case 11:
                     infoTitle.setText("Radio");
                     if (Build.VERSION.SDK_INT < 14) {
                         infoText.setText(Build.RADIO);
@@ -112,11 +112,11 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.getRadioVersion());
                     }
                     break;
-                case 13:
+                case 12:
                     infoTitle.setText("Serial");
                     infoText.setText(Build.SERIAL);
                     break;
-                case 14:
+                case 13:
                     if (Build.VERSION.SDK_INT >= 21) {
                         infoTitle.setText("32bit ABIs");
                         infoText.setText(Arrays.toString(Build.SUPPORTED_32_BIT_ABIS));
@@ -125,7 +125,7 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.CPU_ABI);
                     }
                     break;
-                case 15:
+                case 14:
                     if (Build.VERSION.SDK_INT >= 21) {
                         infoTitle.setText("64bit ABIs");
                         infoText.setText(Arrays.toString(Build.SUPPORTED_64_BIT_ABIS));
@@ -134,21 +134,38 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.CPU_ABI2);
                     }
                     break;
-                case 16:
-                    infoTitle.setText("Tags");
-                    infoText.setText(Build.TAGS);
-                    break;
-                case 17:
-                    infoTitle.setText("Time");
-                    infoText.setText(String.valueOf(Build.TIME));
-                    break;
-                case 18:
-                    infoTitle.setText("Type");
+                case 15:
+                    infoTitle.setText("Build Type");
                     infoText.setText(Build.TYPE);
                     break;
-                case 19:
-                    infoTitle.setText("User");
-                    infoText.setText(Build.USER);
+                case 16:
+                    infoTitle.setText("SELinux Status");
+                    Process process = null;
+                    try {
+                        process = Runtime.getRuntime().exec("getenforce");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    InputStream slnx0=process.getInputStream();
+                    InputStreamReader slnx1 = new InputStreamReader(slnx0);
+                    StringBuilder slnx=new StringBuilder();
+                    BufferedReader slnx2 = new BufferedReader(slnx1);
+                    String sb = null;
+                    try {
+                        sb = slnx2.readLine();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    while(sb != null) {
+                        slnx.append(sb);
+                        try {
+                            sb =slnx2.readLine();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    infoText.setText(slnx.toString());
                     break;
             }
 
@@ -157,7 +174,7 @@ public class DeviceFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 20;
+            return 17;
         }
     }
 }
