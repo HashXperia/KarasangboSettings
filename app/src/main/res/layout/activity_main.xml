@@ -46,7 +46,7 @@
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="io.geeteshk.settingsx.DrawerFragment"
+        android:name="com.hx.settingsx.DrawerFragment"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"

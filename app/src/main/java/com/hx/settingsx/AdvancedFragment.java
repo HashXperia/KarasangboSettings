@@ -1,4 +1,4 @@
-package io.geeteshk.settingsx;
+package com.hx.settingsx;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

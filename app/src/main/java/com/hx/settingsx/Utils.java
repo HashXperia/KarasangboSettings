@@ -1,4 +1,4 @@
-package io.geeteshk.settingsx;
+package com.hx.settingsx;
 
 import java.io.BufferedReader;
 import java.io.IOException;

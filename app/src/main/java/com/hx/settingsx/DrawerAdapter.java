@@ -1,4 +1,4 @@
-package io.geeteshk.settingsx;
+package com.hx.settingsx;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
