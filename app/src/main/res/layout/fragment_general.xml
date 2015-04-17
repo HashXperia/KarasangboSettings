@@ -101,7 +101,7 @@
                 android:layout_marginTop="4dp"
                 android:text="@string/dt2w_sub" />
 
-            <Switch
+            <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/dt2w_ed"

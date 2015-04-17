@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class GeneralFragment extends Fragment {
 
         final SeekBar vibratorBar = (SeekBar) rootView.findViewById(R.id.vibrator_bar);
         final TextView vibratorValue = (TextView) rootView.findViewById(R.id.vibrator_value);
-        final Switch dt2w = (Switch) rootView.findViewById(R.id.dt2w_ed);
+        final CheckBox dt2w = (CheckBox) rootView.findViewById(R.id.dt2w_ed);
 
         if (new File(Constants.VIBRATOR_LEVEL).exists()) {
             vibratorLevel = Integer.valueOf(Utils.readOneLine(Constants.VIBRATOR_LEVEL));
@@ -93,8 +94,7 @@ public class GeneralFragment extends Fragment {
         dt2w.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                if(dt2w.isChecked()==true)
-                {
+                if (dt2w.isChecked() == true) {
                     Utils.writeValue(dt2wPath, "1");
                 } else {
                     Utils.writeValue(dt2wPath, "0");
