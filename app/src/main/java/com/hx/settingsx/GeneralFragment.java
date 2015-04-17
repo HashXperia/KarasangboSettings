@@ -84,7 +84,7 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(500);
+                vibrator.vibrate(400);
             }
         });
 
