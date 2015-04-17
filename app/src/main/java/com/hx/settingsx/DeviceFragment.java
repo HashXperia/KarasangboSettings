@@ -1,6 +1,7 @@
 package com.hx.settingsx;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -58,27 +59,52 @@ public class DeviceFragment extends Fragment {
 
             TextView infoTitle = (TextView) rootView.findViewById(R.id.info_title);
             TextView infoText = (TextView) rootView.findViewById(R.id.info_text);
+            Process process = null;
 
             switch (position) {
                 case 0:
-                    infoTitle.setText("Board");
-                    infoText.setText(Build.BOARD);
-                    break;
-                case 1:
-                    infoTitle.setText("Bootloader");
-                    infoText.setText(Build.BOOTLOADER);
-                    break;
-                case 2:
                     infoTitle.setText("Brand");
                     infoText.setText(Build.BRAND);
                     break;
-                case 3:
+                case 1:
                     infoTitle.setText("Device");
                     infoText.setText(Build.DEVICE);
                     break;
+                case 2:
+                    infoTitle.setText("Board");
+                    infoText.setText(Build.BOARD);
+                    break;
+                case 3:
+                    infoTitle.setText("Android version");
+                    try {
+                        process = Runtime.getRuntime().exec("getprop ro.build.version.release");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    InputStream ver0=process.getInputStream();
+                    InputStreamReader ver1 = new InputStreamReader(ver0);
+                    StringBuilder ver=new StringBuilder();
+                    BufferedReader ver2 = new BufferedReader(ver1);
+                    String vers = null;
+                    try {
+                        vers = ver2.readLine();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    while(vers != null) {
+                        ver.append(vers);
+                        try {
+                            vers =ver2.readLine();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    infoText.setText(ver.toString());
+                    break;
                 case 4:
-                    infoTitle.setText("Display");
-                    infoText.setText(Build.DISPLAY);
+                    infoTitle.setText("Build ID");
+                    infoText.setText(Build.ID);
                     break;
                 case 5:
                     infoTitle.setText("Fingerprint");
@@ -89,8 +115,8 @@ public class DeviceFragment extends Fragment {
                     infoText.setText(Build.HARDWARE);
                     break;
                 case 7:
-                    infoTitle.setText("Build ID");
-                    infoText.setText(Build.ID);
+                    infoTitle.setText("Bootloader");
+                    infoText.setText(Build.BOOTLOADER);
                     break;
                 case 8:
                     infoTitle.setText("Manufacturer");
@@ -140,7 +166,6 @@ public class DeviceFragment extends Fragment {
                     break;
                 case 16:
                     infoTitle.setText("SELinux Status");
-                    Process process = null;
                     try {
                         process = Runtime.getRuntime().exec("getenforce");
                     } catch (IOException e) {
