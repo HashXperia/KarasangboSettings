@@ -61,10 +61,10 @@ public class DeviceFragment extends Fragment {
             TextView infoText = (TextView) rootView.findViewById(R.id.info_text);
             Process process = null;
             String sb = null;
-            InputStream ver0;
-            InputStreamReader ver1;
-            StringBuilder ver;
-            BufferedReader ver2;
+            InputStream getk;
+            InputStreamReader oli;
+            StringBuilder aj;
+            BufferedReader kev;
 
             switch (position) {
                 case 0:
@@ -78,25 +78,25 @@ public class DeviceFragment extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    ver0=process.getInputStream();
-                    ver1 = new InputStreamReader(ver0);
-                    ver=new StringBuilder();
-                    ver2 = new BufferedReader(ver1);
+                    getk = process.getInputStream();
+                    oli = new InputStreamReader(getk);
+                    aj = new StringBuilder();
+                    kev = new BufferedReader(oli);
                     try {
-                        sb = ver2.readLine();
+                        sb = kev.readLine();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     while(sb != null) {
-                        ver.append(sb);
+                        aj.append(sb);
                         try {
-                            sb =ver2.readLine();
+                            sb =kev.readLine();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
 
                     }
-                    infoText.setText(ver.toString());
+                    infoText.setText(aj.toString());
                     break;
                 case 2:
                     infoTitle.setText("Model no.");
@@ -179,25 +179,25 @@ public class DeviceFragment extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    ver0=process.getInputStream();
-                    ver1 = new InputStreamReader(ver0);
-                    ver=new StringBuilder();
-                    ver2 = new BufferedReader(ver1);
+                    getk = process.getInputStream();
+                    oli = new InputStreamReader(getk);
+                    aj = new StringBuilder();
+                    kev = new BufferedReader(oli);
                     try {
-                        sb = ver2.readLine();
+                        sb = kev.readLine();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     while(sb != null) {
-                        ver.append(sb);
+                        aj.append(sb);
                         try {
-                            sb =ver2.readLine();
+                            sb =kev.readLine();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
 
                     }
-                    infoText.setText(ver.toString());
+                    infoText.setText(aj.toString());
                     break;
                 case 18:
                     infoTitle.setText("Encrytion Status");
@@ -206,25 +206,25 @@ public class DeviceFragment extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    ver0=process.getInputStream();
-                    ver1 = new InputStreamReader(ver0);
-                    ver=new StringBuilder();
-                    ver2 = new BufferedReader(ver1);
+                    getk = process.getInputStream();
+                    oli = new InputStreamReader(getk);
+                    aj = new StringBuilder();
+                    kev = new BufferedReader(oli);
                     try {
-                        sb = ver2.readLine();
+                        sb = kev.readLine();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     while(sb != null) {
-                        ver.append(sb);
+                        aj.append(sb);
                         try {
-                            sb =ver2.readLine();
+                            sb =kev.readLine();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
 
                     }
-                    String tmp = ver.toString();
+                    String tmp = aj.toString();
                     String encr = "encrypt";
                     String status = tmp.substring(0,1).toUpperCase() + tmp.substring(1);
                     if(!tmp.toLowerCase().contains(encr.toLowerCase())) {

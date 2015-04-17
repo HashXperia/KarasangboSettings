@@ -86,7 +86,7 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(400);
+                vibrator.vibrate(420);
             }
         });
 
@@ -97,7 +97,7 @@ public class GeneralFragment extends Fragment {
                     dt2w.setEnabled(false);
                     Toast.makeText(getActivity(), "This feature is not supported by kernel", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (dt2w.isChecked() == true) {
+                    if (isChecked == true) {
                         Utils.writeValue(dt2wPath, "1");
                     } else {
                         Utils.writeValue(dt2wPath, "0");
