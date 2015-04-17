@@ -1,7 +1,9 @@
 package com.hx.settingsx;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -53,8 +55,13 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return item.getItemId() == R.id.action_settings ||
-                super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_rate) {
+            Intent playapp = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.hx.settingsx"));
+            startActivity(playapp);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
