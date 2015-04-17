@@ -233,6 +233,10 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(status);
                     }
                     break;
+                case 19:
+                    infoTitle.setText("API Level");
+                    infoText.setText(Build.VERSION.SDK);
+                    break;
             }
 
 
@@ -241,7 +245,7 @@ public class DeviceFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 19;
+            return 20;
         }
     }
 }
