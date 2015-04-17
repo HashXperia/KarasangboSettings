@@ -3,10 +3,10 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@color/window_background</item>
-        <item name="colorPrimary">#2196F3</item>
-        <item name="colorPrimaryDark">#1976D2</item>
-        <item name="colorAccent">#FF5252</item>
+        <item name="android:windowBackground">@color/grey50</item>
+        <item name="colorPrimary">@color/blue500</item>
+        <item name="colorPrimaryDark">@color/blue700</item>
+        <item name="colorAccent">@color/reda200</item>
     </style>
 
 </resources>
