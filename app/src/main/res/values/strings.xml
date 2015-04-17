@@ -7,7 +7,7 @@
 
     <string name="nav_item_general">General</string>
     <string name="nav_item_advanced">Advanced</string>
-    <string name="nav_item_device">Device</string>
+    <string name="nav_item_device">Device Info</string>
     <string name="action_rate">Rate this app</string>
     <string name="vibrator_intensity">Vibrator Intentsity</string>
     <string name="dt2w">Double Tap To Wake</string>
