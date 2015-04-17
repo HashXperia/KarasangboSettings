@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -88,14 +90,13 @@ public class GeneralFragment extends Fragment {
             }
         });
 
-        dt2w.setOnClickListener(new View.OnClickListener() {
+        dt2w.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (dt2w_val == -1) {
-                    dt2w.setChecked(false);
+                    dt2w.setEnabled(false);
                     Toast.makeText(getActivity(), "This feature is not supported by kernel", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     if (dt2w.isChecked() == true) {
                         Utils.writeValue(dt2wPath, "1");
                     } else {
