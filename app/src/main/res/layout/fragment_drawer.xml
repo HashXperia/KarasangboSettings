@@ -21,13 +21,6 @@
 
     </RelativeLayout>
 
-    <View
-        android:id="@+id/list_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/nav_header_container"
-        android:background="@drawable/shadow" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/drawer_list"
         android:layout_width="match_parent"

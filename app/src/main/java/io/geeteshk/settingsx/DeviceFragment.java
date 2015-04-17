@@ -1,5 +1,6 @@
 package io.geeteshk.settingsx;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,10 +30,14 @@ public class DeviceFragment extends Fragment {
         return rootView;
     }
 
+    @SuppressWarnings("deprecation")
     private class InfoAdapter extends ArrayAdapter<String> {
 
         Context mContext;
         int mResource;
+
+        String[] mTitles = {"Board", "Bootloader", "Brand", "Device", "Display", "Fingerprint", "Hardware", "Host", "ID", "Manufacturer", "Model", "Radio", "CPU ABI", "CPU ABI2", "Tags", "Time", "Type", "User"};
+        String[] mContents = {Build.BOARD, Build.BOOTLOADER, Build.BRAND, Build.DEVICE, Build.DISPLAY, Build.FINGERPRINT, Build.HARDWARE, Build.HOST, Build.ID, Build.MANUFACTURER, Build.MODEL, Build.RADIO, Build.CPU_ABI, Build.CPU_ABI2, Build.TAGS, String.valueOf(Build.TIME), Build.TYPE, Build.USER};
 
         public InfoAdapter(Context context, int resource) {
             super(context, resource);
@@ -40,7 +45,7 @@ public class DeviceFragment extends Fragment {
             mResource = resource;
         }
 
-        @SuppressWarnings("deprecation")
+        @SuppressLint("NewApi")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,101 +60,17 @@ public class DeviceFragment extends Fragment {
             TextView infoTitle = (TextView) rootView.findViewById(R.id.info_title);
             TextView infoText = (TextView) rootView.findViewById(R.id.info_text);
 
-            switch (position) {
-                case 0:
-                    infoTitle.setText("Board");
-                    infoText.setText(Build.BOARD);
-                    break;
-                case 1:
-                    infoTitle.setText("Bootloader");
-                    infoText.setText(Build.BOOTLOADER);
-                    break;
-                case 2:
-                    infoTitle.setText("Brand");
-                    infoText.setText(Build.BRAND);
-                    break;
-                case 3:
-                    infoTitle.setText("Device");
-                    infoText.setText(Build.DEVICE);
-                    break;
-                case 4:
-                    infoTitle.setText("Display");
-                    infoText.setText(Build.DISPLAY);
-                    break;
-                case 5:
-                    infoTitle.setText("Fingerprint");
-                    infoText.setText(Build.FINGERPRINT);
-                    break;
-                case 6:
-                    infoTitle.setText("Hardware");
-                    infoText.setText(Build.HARDWARE);
-                    break;
-                case 7:
-                    infoTitle.setText("Host");
-                    infoText.setText(Build.HOST);
-                    break;
-                case 8:
-                    infoTitle.setText("ID");
-                    infoText.setText(Build.ID);
-                    break;
-                case 9:
-                    infoTitle.setText("Manufacturer");
-                    infoText.setText(Build.MANUFACTURER);
-                    break;
-                case 10:
-                    infoTitle.setText("Model");
-                    infoText.setText(Build.MODEL);
-                    break;
-                case 11:
-                    infoTitle.setText("Product");
-                    infoText.setText(Build.PRODUCT);
-                    break;
-                case 12:
-                    infoTitle.setText("Radio");
-                    if (Build.VERSION.SDK_INT < 14) {
-                        infoText.setText(Build.RADIO);
-                    } else {
-                        infoText.setText(Build.getRadioVersion());
-                    }
-                    break;
-                case 13:
-                    infoTitle.setText("Serial");
-                    infoText.setText(Build.SERIAL);
-                    break;
-                case 14:
-                    if (Build.VERSION.SDK_INT >= 21) {
-                        infoTitle.setText("32bit ABIs");
-                        infoText.setText(Arrays.toString(Build.SUPPORTED_32_BIT_ABIS));
-                    } else {
-                        infoTitle.setText("CPU ABI");
-                        infoText.setText(Build.CPU_ABI);
-                    }
-                    break;
-                case 15:
-                    if (Build.VERSION.SDK_INT >= 21) {
-                        infoTitle.setText("64bit ABIs");
-                        infoText.setText(Arrays.toString(Build.SUPPORTED_64_BIT_ABIS));
-                    } else {
-                        infoTitle.setText("CPU ABI2");
-                        infoText.setText(Build.CPU_ABI2);
-                    }
-                    break;
-                case 16:
-                    infoTitle.setText("Tags");
-                    infoText.setText(Build.TAGS);
-                    break;
-                case 17:
-                    infoTitle.setText("Time");
-                    infoText.setText(String.valueOf(Build.TIME));
-                    break;
-                case 18:
-                    infoTitle.setText("Type");
-                    infoText.setText(Build.TYPE);
-                    break;
-                case 19:
-                    infoTitle.setText("User");
-                    infoText.setText(Build.USER);
-                    break;
+            infoTitle.setText(mTitles[position]);
+            infoText.setText(mContents[position]);
+
+            if (Build.VERSION.SDK_INT >= 21 && position == 12) {
+                infoTitle.setText("32bit ABIs");
+                infoText.setText(Arrays.toString(Build.SUPPORTED_32_BIT_ABIS));
+            }
+
+            if (Build.VERSION.SDK_INT >= 21 && position == 13) {
+                infoTitle.setText("64bit ABIs");
+                infoText.setText(Arrays.toString(Build.SUPPORTED_64_BIT_ABIS));
             }
 
             return rootView;
@@ -157,7 +78,7 @@ public class DeviceFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 20;
+            return mTitles.length;
         }
     }
 }

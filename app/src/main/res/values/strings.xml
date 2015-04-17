@@ -18,4 +18,6 @@
         <item>@string/nav_item_advanced</item>
         <item>@string/nav_item_device</item>
     </string-array>
+
+    <color name="window_background">#FAFAFA</color>
 </resources>

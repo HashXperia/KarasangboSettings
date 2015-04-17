@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
         oldDrawable = imageView.getDrawable();
         imageView.setImageResource(resources[position]);
         textView.setTextColor(0xff2196f3);
-        textView.setTypeface(Typeface.DEFAULT_BOLD);
+        textView.setTypeface(Typeface.MONOSPACE);
         mToolbar.setTitle(textView.getText());
         displayView(position);
     }
