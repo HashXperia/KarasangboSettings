@@ -60,6 +60,11 @@ public class DeviceFragment extends Fragment {
             TextView infoTitle = (TextView) rootView.findViewById(R.id.info_title);
             TextView infoText = (TextView) rootView.findViewById(R.id.info_text);
             Process process = null;
+            String sb = null;
+            InputStream ver0;
+            InputStreamReader ver1;
+            StringBuilder ver;
+            BufferedReader ver2;
 
             switch (position) {
                 case 0:
@@ -68,33 +73,24 @@ public class DeviceFragment extends Fragment {
                     break;
                 case 1:
                     infoTitle.setText("Device");
-                    infoText.setText(Build.DEVICE);
-                    break;
-                case 2:
-                    infoTitle.setText("Board");
-                    infoText.setText(Build.BOARD);
-                    break;
-                case 3:
-                    infoTitle.setText("Android version");
                     try {
-                        process = Runtime.getRuntime().exec("getprop ro.build.version.release");
+                        process = Runtime.getRuntime().exec("getprop ro.semc.product.name");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    InputStream ver0=process.getInputStream();
-                    InputStreamReader ver1 = new InputStreamReader(ver0);
-                    StringBuilder ver=new StringBuilder();
-                    BufferedReader ver2 = new BufferedReader(ver1);
-                    String vers = null;
+                    ver0=process.getInputStream();
+                    ver1 = new InputStreamReader(ver0);
+                    ver=new StringBuilder();
+                    ver2 = new BufferedReader(ver1);
                     try {
-                        vers = ver2.readLine();
+                        sb = ver2.readLine();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    while(vers != null) {
-                        ver.append(vers);
+                    while(sb != null) {
+                        ver.append(sb);
                         try {
-                            vers =ver2.readLine();
+                            sb =ver2.readLine();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -102,35 +98,70 @@ public class DeviceFragment extends Fragment {
                     }
                     infoText.setText(ver.toString());
                     break;
+                case 2:
+                    infoTitle.setText("Model no.");
+                    infoText.setText(Build.DEVICE);
+                    break;
+                case 3:
+                    infoTitle.setText("Board");
+                    infoText.setText(Build.BOARD);
+                    break;
                 case 4:
+                    infoTitle.setText("Android version");
+                    try {
+                        process = Runtime.getRuntime().exec("getprop ro.build.version.release");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    ver0=process.getInputStream();
+                    ver1 = new InputStreamReader(ver0);
+                    ver=new StringBuilder();
+                    ver2 = new BufferedReader(ver1);
+                    try {
+                        sb = ver2.readLine();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    while(sb != null) {
+                        ver.append(sb);
+                        try {
+                            sb =ver2.readLine();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    infoText.setText(ver.toString());
+                    break;
+                case 5:
                     infoTitle.setText("Build ID");
                     infoText.setText(Build.ID);
                     break;
-                case 5:
+                case 6:
                     infoTitle.setText("Fingerprint");
                     infoText.setText(Build.FINGERPRINT);
                     break;
-                case 6:
+                case 7:
                     infoTitle.setText("Hardware");
                     infoText.setText(Build.HARDWARE);
                     break;
-                case 7:
+                case 8:
                     infoTitle.setText("Bootloader");
                     infoText.setText(Build.BOOTLOADER);
                     break;
-                case 8:
+                case 9:
                     infoTitle.setText("Manufacturer");
                     infoText.setText(Build.MANUFACTURER);
                     break;
-                case 9:
+                case 10:
                     infoTitle.setText("Model");
                     infoText.setText(Build.MODEL);
                     break;
-                case 10:
+                case 11:
                     infoTitle.setText("Product");
                     infoText.setText(Build.PRODUCT);
                     break;
-                case 11:
+                case 12:
                     infoTitle.setText("Radio");
                     if (Build.VERSION.SDK_INT < 14) {
                         infoText.setText(Build.RADIO);
@@ -138,11 +169,11 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.getRadioVersion());
                     }
                     break;
-                case 12:
+                case 13:
                     infoTitle.setText("Serial");
                     infoText.setText(Build.SERIAL);
                     break;
-                case 13:
+                case 14:
                     if (Build.VERSION.SDK_INT >= 21) {
                         infoTitle.setText("32bit ABIs");
                         infoText.setText(Arrays.toString(Build.SUPPORTED_32_BIT_ABIS));
@@ -151,7 +182,7 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.CPU_ABI);
                     }
                     break;
-                case 14:
+                case 15:
                     if (Build.VERSION.SDK_INT >= 21) {
                         infoTitle.setText("64bit ABIs");
                         infoText.setText(Arrays.toString(Build.SUPPORTED_64_BIT_ABIS));
@@ -160,46 +191,80 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.CPU_ABI2);
                     }
                     break;
-                case 15:
+                case 16:
                     infoTitle.setText("Build Type");
                     infoText.setText(Build.TYPE);
                     break;
-                case 16:
+                case 17:
                     infoTitle.setText("SELinux Status");
                     try {
                         process = Runtime.getRuntime().exec("getenforce");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    InputStream slnx0=process.getInputStream();
-                    InputStreamReader slnx1 = new InputStreamReader(slnx0);
-                    StringBuilder slnx=new StringBuilder();
-                    BufferedReader slnx2 = new BufferedReader(slnx1);
-                    String sb = null;
+                    ver0=process.getInputStream();
+                    ver1 = new InputStreamReader(ver0);
+                    ver=new StringBuilder();
+                    ver2 = new BufferedReader(ver1);
                     try {
-                        sb = slnx2.readLine();
+                        sb = ver2.readLine();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     while(sb != null) {
-                        slnx.append(sb);
+                        ver.append(sb);
                         try {
-                            sb =slnx2.readLine();
+                            sb =ver2.readLine();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
 
                     }
-                    infoText.setText(slnx.toString());
+                    infoText.setText(ver.toString());
+                    break;
+                case 18:
+                    infoTitle.setText("Encrytion Status");
+                    try {
+                        process = Runtime.getRuntime().exec("getprop ro.crypto.state");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    ver0=process.getInputStream();
+                    ver1 = new InputStreamReader(ver0);
+                    ver=new StringBuilder();
+                    ver2 = new BufferedReader(ver1);
+                    try {
+                        sb = ver2.readLine();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    while(sb != null) {
+                        ver.append(sb);
+                        try {
+                            sb =ver2.readLine();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    String tmp = ver.toString();
+                    String encr = "encrypt";
+                    String status = tmp.substring(0,1).toUpperCase() + tmp.substring(1);
+                    if(!tmp.toLowerCase().contains(encr.toLowerCase())) {
+                        infoText.setText("Error");
+                    } else {
+                        infoText.setText(status);
+                    }
                     break;
             }
+
 
             return rootView;
         }
 
         @Override
         public int getCount() {
-            return 17;
+            return 19;
         }
     }
 }
