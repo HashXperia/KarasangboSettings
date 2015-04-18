@@ -54,7 +54,7 @@ public class DrawerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mResources = new int[]{R.drawable.ic_general, R.drawable.ic_advanced, R.drawable.ic_device};
+        mResources = new int[]{R.drawable.ic_general, R.drawable.ic_advanced, R.drawable.ic_device, R.drawable.ic_action_settings, R.drawable.ic_action_help};
         for (int resource : mResources) {
             mIcons.add(getActivity().getResources().getDrawable(resource));
         }
@@ -70,6 +70,7 @@ public class DrawerFragment extends Fragment {
         mAdapter = new DrawerAdapter(getActivity(), getItems());
 
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), mRecyclerView, new ClickListener() {
             @Override
