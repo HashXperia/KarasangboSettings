@@ -127,14 +127,41 @@ public class DeviceFragment extends Fragment {
                     infoText.setText(Build.BOOTLOADER);
                     break;
                 case 9:
+                    infoTitle.setText("Boot device");
+                    try {
+                        process = Runtime.getRuntime().exec("getprop ro.boot.bootdevice");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    getk = process.getInputStream();
+                    oli = new InputStreamReader(getk);
+                    aj = new StringBuilder();
+                    kev = new BufferedReader(oli);
+                    try {
+                        sb = kev.readLine();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    while(sb != null) {
+                        aj.append(sb);
+                        try {
+                            sb =kev.readLine();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    infoText.setText(aj.toString());
+                    break;
+                case 10:
                     infoTitle.setText("Manufacturer");
                     infoText.setText(Build.MANUFACTURER);
                     break;
-                case 10:
+                case 11:
                     infoTitle.setText("Product");
                     infoText.setText(Build.PRODUCT);
                     break;
-                case 11:
+                case 12:
                     infoTitle.setText("Radio");
                     if (Build.VERSION.SDK_INT < 14) {
                         infoText.setText(Build.RADIO);
@@ -142,11 +169,11 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.getRadioVersion());
                     }
                     break;
-                case 12:
+                case 13:
                     infoTitle.setText("Serial");
                     infoText.setText(Build.SERIAL);
                     break;
-                case 13:
+                case 14:
                     if (Build.VERSION.SDK_INT >= 21) {
                         infoTitle.setText("32bit ABIs");
                         infoText.setText(Arrays.toString(Build.SUPPORTED_32_BIT_ABIS));
@@ -155,7 +182,7 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.CPU_ABI);
                     }
                     break;
-                case 14:
+                case 15:
                     if (Build.VERSION.SDK_INT >= 21) {
                         infoTitle.setText("64bit ABIs");
                         infoText.setText(Arrays.toString(Build.SUPPORTED_64_BIT_ABIS));
@@ -164,11 +191,11 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(Build.CPU_ABI2);
                     }
                     break;
-                case 15:
+                case 16:
                     infoTitle.setText("Build Type");
                     infoText.setText(Build.TYPE);
                     break;
-                case 16:
+                case 17:
                     infoTitle.setText("SELinux Status");
                     try {
                         process = Runtime.getRuntime().exec("getenforce");
@@ -195,7 +222,7 @@ public class DeviceFragment extends Fragment {
                     }
                     infoText.setText(aj.toString());
                     break;
-                case 17:
+                case 18:
                     infoTitle.setText("Encrytion Status");
                     try {
                         process = Runtime.getRuntime().exec("getprop ro.crypto.state");
@@ -229,7 +256,7 @@ public class DeviceFragment extends Fragment {
                         infoText.setText(status);
                     }
                     break;
-                case 18:
+                case 19:
                     infoTitle.setText("API Level");
                     infoText.setText(Build.VERSION.SDK);
                     break;
@@ -241,7 +268,7 @@ public class DeviceFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 19;
+            return 20;
         }
     }
 }
