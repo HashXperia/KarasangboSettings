@@ -48,23 +48,6 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_rate) {
-            Intent playapp = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.hx.settingsx"));
-            startActivity(playapp);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onDrawerItemSelected(View view, int position) {
         if (oldView != null) {
             ImageView oldImage = (ImageView) oldView.findViewById(R.id.nav_icon);
