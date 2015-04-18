@@ -260,6 +260,33 @@ public class DeviceFragment extends Fragment {
                     infoTitle.setText("API Level");
                     infoText.setText(Build.VERSION.SDK);
                     break;
+                case 20:
+                    infoTitle.setText("USB config");
+                    try {
+                        process = Runtime.getRuntime().exec("getprop persist.sys.usb.config");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    getk = process.getInputStream();
+                    oli = new InputStreamReader(getk);
+                    aj = new StringBuilder();
+                    kev = new BufferedReader(oli);
+                    try {
+                        sb = kev.readLine();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    while(sb != null) {
+                        aj.append(sb);
+                        try {
+                            sb =kev.readLine();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    infoText.setText(aj.toString());
+                    break;
             }
 
 
@@ -268,7 +295,7 @@ public class DeviceFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 20;
+            return 21;
         }
     }
 }
