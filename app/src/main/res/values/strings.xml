@@ -9,6 +9,10 @@
     <string name="nav_item_advanced">Advanced</string>
     <string name="nav_item_device">Device Info</string>
     <string name="action_rate">Rate this app</string>
+    <string name="about">About</string>
+    <string name="contri1">Abhinav Jhanwar</string>
+    <string name="contri2">Geetesh Kalakoti</string>
+    <string name="app_ver">0.1</string>
     <string name="vibrator_intensity">Vibrator Intentsity</string>
     <string name="dt2w">Double Tap To Wake</string>
     <string name="disable">Disabled</string>
