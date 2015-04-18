@@ -94,7 +94,7 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (dt2w_val == -1) {
-                    dt2w.setEnabled(false);
+                    dt2w.setChecked(false);
                     Toast.makeText(getActivity(), "This feature is not supported by kernel", Toast.LENGTH_SHORT).show();
                 } else {
                     if (isChecked == true) {
