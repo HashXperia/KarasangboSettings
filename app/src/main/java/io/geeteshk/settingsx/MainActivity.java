@@ -8,9 +8,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Map;
 
 
 public class MainActivity extends ActionBarActivity implements DrawerFragment.DrawerListener {
@@ -24,6 +27,12 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Map<String, ?> keys = getSharedPreferences("io.geeteshk.settingsx", MODE_PRIVATE).getAll();
+        for (Map.Entry<String, ?> entry : keys.entrySet()) {
+            Log.d("map values", entry.getKey() + ": " +
+                    entry.getValue().toString());
+        }
+
         FontsOverride.setDefaultFont(this, "MONOSPACE", "Roboto-Medium.ttf");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -35,7 +44,8 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
         mFragment = (DrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         mFragment.init(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         mFragment.setListener(this);
-        displayView(-1);
+
+        displayView(getSharedPreferences("io.geeteshk.settingsx", MODE_PRIVATE).getInt("default_category", -1));
     }
 
     @Override
@@ -59,6 +69,7 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
 
     private void displayView(int position) {
         Fragment fragment = null;
+        SettingsFragment settingsFragment = null;
         switch (position) {
             case -1:
                 fragment = new HelloFragment();
@@ -73,7 +84,7 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
                 fragment = new DeviceFragment();
                 break;
             case 3:
-                fragment = new SettingsFragment();
+                settingsFragment = new SettingsFragment();
                 break;
             case 4:
                 fragment = new HelpFragment();
@@ -86,6 +97,11 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.Dr
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+        } else if (settingsFragment != null) {
+            android.app.FragmentManager fragmentManager = getFragmentManager();
+            android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, settingsFragment);
             fragmentTransaction.commit();
         }
     }

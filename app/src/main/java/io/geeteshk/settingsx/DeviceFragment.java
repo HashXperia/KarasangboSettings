@@ -36,8 +36,8 @@ public class DeviceFragment extends Fragment {
         Context mContext;
         int mResource;
 
-        String[] mTitles = {"Board", "Bootloader", "Brand", "Device", "Display", "Fingerprint", "Hardware", "Host", "ID", "Manufacturer", "Model", "Radio", "CPU ABI", "CPU ABI2", "Tags", "Time", "Type", "User"};
-        String[] mContents = {Build.BOARD, Build.BOOTLOADER, Build.BRAND, Build.DEVICE, Build.DISPLAY, Build.FINGERPRINT, Build.HARDWARE, Build.HOST, Build.ID, Build.MANUFACTURER, Build.MODEL, Build.RADIO, Build.CPU_ABI, Build.CPU_ABI2, Build.TAGS, String.valueOf(Build.TIME), Build.TYPE, Build.USER};
+        String[] mTitles = {"Android Version", "Board", "Bootloader", "Brand", "Device", "Display", "Fingerprint", "Hardware", "Host", "ID", "Manufacturer", "Model", "Radio", "CPU ABI", "CPU ABI2", "Tags", "Time", "Type", "User"};
+        String[] mContents = {Build.VERSION.RELEASE, Build.BOARD, Build.BOOTLOADER, Build.BRAND, Build.DEVICE, Build.DISPLAY, Build.FINGERPRINT, Build.HARDWARE, Build.HOST, Build.ID, Build.MANUFACTURER, Build.MODEL, Build.RADIO, Build.CPU_ABI, Build.CPU_ABI2, Build.TAGS, String.valueOf(Build.TIME), Build.TYPE, Build.USER};
 
         public InfoAdapter(Context context, int resource) {
             super(context, resource);
@@ -63,12 +63,12 @@ public class DeviceFragment extends Fragment {
             infoTitle.setText(mTitles[position]);
             infoText.setText(mContents[position]);
 
-            if (Build.VERSION.SDK_INT >= 21 && position == 12) {
+            if (Build.VERSION.SDK_INT >= 21 && position == 13) {
                 infoTitle.setText("32bit ABIs");
                 infoText.setText(Arrays.toString(Build.SUPPORTED_32_BIT_ABIS));
             }
 
-            if (Build.VERSION.SDK_INT >= 21 && position == 13) {
+            if (Build.VERSION.SDK_INT >= 21 && position == 14) {
                 infoTitle.setText("64bit ABIs");
                 infoText.setText(Arrays.toString(Build.SUPPORTED_64_BIT_ABIS));
             }
