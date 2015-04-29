@@ -97,11 +97,7 @@ public class GeneralFragment extends Fragment {
                     dt2w.setChecked(false);
                     Toast.makeText(getActivity(), "This feature is not supported by kernel", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (isChecked == true) {
-                        Utils.writeValue(dt2wPath, "1");
-                    } else {
-                        Utils.writeValue(dt2wPath, "0");
-                    }
+                    Utils.writeValue(dt2wPath, dt2w.isChecked() ? "1" : "0");
                 }
             }
         });
