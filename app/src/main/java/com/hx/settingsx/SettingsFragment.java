@@ -1,38 +1,65 @@
 package com.hx.settingsx;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends Fragment {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.fragment_settings);
+    static int choice = -1;
 
-        ListPreference listPreference = (ListPreference) findPreference("default_category");
-        listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                getActivity().getSharedPreferences("com.hx.settingsx", Context.MODE_PRIVATE).edit().putInt("default_category", Integer.valueOf((String) newValue)).commit();
-                return true;
-            }
-        });
+    public SettingsFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        if (rootView != null) {
-            rootView.setBackgroundColor(getResources().getColor(R.color.grey50));
-        }
+        final Spinner spinner =(Spinner) rootView.findViewById(R.id.spinner1);
+        ArrayAdapter<CharSequence> adp3= ArrayAdapter.createFromResource(getActivity(),
+                R.array.spinner_items, android.R.layout.simple_list_item_1);
+
+        adp3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adp3);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                String ss=spinner.getSelectedItem().toString();
+                switch (ss) {
+                    case "General":
+                        choice=0;
+                        break;
+                    case "Advanced":
+                        choice=1;
+                        break;
+                    case "Device Info":
+                        choice=2;
+                        break;
+                    case "Settings":
+                        choice=3;
+                        break;
+                    case "Help and Feedback":
+                        choice=4;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+        });
 
         return rootView;
     }

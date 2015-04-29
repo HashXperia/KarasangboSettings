@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SettingsX</string>
     <string name="hello_world">Hello world!</string>
+    <string name="page1">Main page</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -24,6 +25,15 @@
     <string name="rategp">Please leave a rating on Google Play</string>
     <string name="about">About</string>
     <string name="version">SettingsX v1</string>
+
+    <string-array name="spinner_items">
+        <item>@string/page1</item>
+        <item>@string/nav_item_general</item>
+        <item>@string/nav_item_advanced</item>
+        <item>@string/nav_item_device</item>
+        <item>@string/action_settings</item>
+        <item>@string/help</item>
+    </string-array>
 
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_general</item>
