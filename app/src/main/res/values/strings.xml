@@ -17,6 +17,8 @@
     <string name="dt2w_sub">Double tap the screen to wake device</string>
     <string name="zero">0</string>
     <string name="select_option">Select an option from the drawer to begin.</string>
+    <string name="rateus">Rate Us</string>
+    <string name="rategp">Please leave a rating on Google Play</string>
 
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_general</item>
