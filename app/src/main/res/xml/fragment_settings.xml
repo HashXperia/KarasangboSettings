@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="GENERAL">
+    <PreferenceCategory android:title="@string/general">
 
         <ListPreference
             android:entries="@array/nav_drawer_labels"
             android:entryValues="@array/nav_drawer_values"
             android:key="default_category"
-            android:summary="The default section to open upon application launch."
-            android:title="Default Category" />
+            android:summary="@string/defaultdesc"
+            android:title="@string/defaultcat" />
 
     </PreferenceCategory>
 

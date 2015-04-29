@@ -6,6 +6,9 @@
     <string name="drawer_close">Close</string>
 
     <string name="nav_item_general">General</string>
+    <string name="general">GENERAL</string>
+    <string name="defaultcat">Default Category</string>
+    <string name="defaultdesc">The default section to open upon application launch.</string>
     <string name="nav_item_advanced">Advanced</string>
     <string name="nav_item_device">Device Info</string>
     <string name="action_settings">Settings</string>
