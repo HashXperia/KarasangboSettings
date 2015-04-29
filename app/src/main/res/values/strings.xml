@@ -19,6 +19,8 @@
     <string name="select_option">Select an option from the drawer to begin.</string>
     <string name="rateus">Rate Us</string>
     <string name="rategp">Please leave a rating on Google Play</string>
+    <string name="about">About</string>
+    <string name="version">SettingsX v1</string>
 
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_general</item>
