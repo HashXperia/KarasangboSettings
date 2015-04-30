@@ -1,10 +1,12 @@
 package com.hx.settingsx;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -29,6 +31,7 @@ public class GeneralFragment extends Fragment {
     String vibratorPath = "";
     int dt2w_val = 0;
     String dt2wPath = "";
+    int levelvib;
 
     public GeneralFragment() {
     }
@@ -42,6 +45,10 @@ public class GeneralFragment extends Fragment {
         final CheckBox dt2w = (CheckBox) rootView.findViewById(R.id.dt2w_ed);
         final CardView card1 = (CardView) rootView.findViewById(R.id.c1);
         final CardView card2 = (CardView) rootView.findViewById(R.id.c2);
+
+        SharedPreferences sharedPreferences;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if(SettingsFragment.theme==1) {
             card1.setCardBackgroundColor(0xff424242);
@@ -71,19 +78,27 @@ public class GeneralFragment extends Fragment {
             vibratorValue.setText("-");
             vibratorValue.setTextColor(getActivity().getResources().getColor(android.R.color.background_light));
         } else {
-            vibratorBar.setProgress(vibratorLevel);
-            vibratorValue.setText(String.valueOf(vibratorLevel));
+            levelvib = sharedPreferences.getInt("viblevel", vibratorLevel);
+            vibratorBar.setProgress(levelvib);
+            vibratorValue.setText(String.valueOf(levelvib));
         }
 
         vibratorBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                SharedPreferences sharedPreferences;
+                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
                 vibratorValue.setText(String.valueOf(progress));
                 if (vibratorLevel != -1) {
                     if (vibratorPath.equals(Constants.VIBRATOR_LEVEL)) {
                         Utils.writeValue(vibratorPath, String.valueOf(seekBar.getProgress()));
+                        editor.putInt("viblevel", seekBar.getProgress());
+                        editor.commit();
                     } else if (vibratorPath.equals(Constants.VIBRATOR_LEVEL_VTG)) {
                         Utils.writeValue(vibratorPath, String.valueOf(getVtgLevel(seekBar.getProgress())));
+                        editor.putInt("viblevel", seekBar.getProgress());
+                        editor.commit();
                     }
                 }
             }
