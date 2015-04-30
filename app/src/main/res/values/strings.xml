@@ -29,6 +29,8 @@
     <string name="darkdesc">Enable/Disable dark theme</string>
     <string name="log">Logcat</string>
     <string name="logdesc">Touch to get a logcat</string>
+    <string name="credits">Credits</string>
+    <string name="gtk">Geetesh Kalakoti</string>
 
     <string-array name="spinner_items">
         <item>@string/page1</item>

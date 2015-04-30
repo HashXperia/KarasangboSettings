@@ -21,19 +21,18 @@
             android:paddingTop="24dp">
 
             <TextView
-                android:id="@+id/about"
+                android:id="@+id/dev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/about"
+                android:text="@string/credits"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/aboutus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/about"
+                android:layout_below="@+id/dev"
                 android:layout_marginTop="4dp"
-                android:text="@string/version"/>
+                android:text="@string/gtk"/>
 
         </RelativeLayout>
 
@@ -68,6 +67,41 @@
                 android:layout_below="@+id/rateus"
                 android:layout_marginTop="4dp"
                 android:text="@string/rategp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:id="@+id/c8">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="24dp">
+
+            <TextView
+                android:id="@+id/about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/aboutus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/about"
+                android:layout_marginTop="4dp"
+                android:text="@string/version"/>
 
         </RelativeLayout>
 

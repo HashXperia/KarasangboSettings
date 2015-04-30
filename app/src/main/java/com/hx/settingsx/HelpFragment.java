@@ -22,10 +22,12 @@ public class HelpFragment extends Fragment {
 
         final CardView card5 = (CardView) rootView.findViewById(R.id.c5);
         final CardView card6 = (CardView) rootView.findViewById(R.id.c6);
+        final CardView card8 = (CardView) rootView.findViewById(R.id.c8);
 
         if(SettingsFragment.theme==1) {
             card5.setCardBackgroundColor(0xff424242);
             card6.setCardBackgroundColor(0xff424242);
+            card8.setCardBackgroundColor(0xff424242);
         }
 
         RelativeLayout rating =(RelativeLayout) rootView.findViewById(R.id.rate);
