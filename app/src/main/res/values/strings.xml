@@ -27,6 +27,8 @@
     <string name="version">SettingsX v1</string>
     <string name="dark">Dark Theme</string>
     <string name="darkdesc">Enable/Disable dark theme</string>
+    <string name="log">Logcat</string>
+    <string name="logdesc">Touch to get a logcat</string>
 
     <string-array name="spinner_items">
         <item>@string/page1</item>
