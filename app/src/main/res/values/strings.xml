@@ -31,6 +31,10 @@
     <string name="logdesc">Touch to get a logcat</string>
     <string name="credits">Credits</string>
     <string name="gtk">Geetesh Kalakoti</string>
+    <string name="dmesg">Dmesg</string>
+    <string name="dmesgdesc">Touch to get a driver message(dmesg)</string>
+    <string name="rlog">Radio Log</string>
+    <string name="rlogdesc">Touch to get a radio log</string>
 
     <string-array name="spinner_items">
         <item>@string/page1</item>
