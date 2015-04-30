@@ -66,6 +66,10 @@ public class DrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_drawer, container, false);
 
+        if (SettingsFragment.theme==1) {
+            rootView.setBackgroundColor(0xff303030);
+        }
+
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.drawer_list);
         mAdapter = new DrawerAdapter(getActivity(), getItems());
 

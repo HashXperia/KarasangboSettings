@@ -18,8 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/nav_icon"
-	android:paddingLeft="24dp"
-        android:textColor="@android:color/black"
+	    android:paddingLeft="24dp"
         android:textSize="14sp"
 	android:typeface="monospace" />
 

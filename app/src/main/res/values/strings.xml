@@ -25,6 +25,8 @@
     <string name="rategp">Please leave a rating on Google Play</string>
     <string name="about">About</string>
     <string name="version">SettingsX v1</string>
+    <string name="dark">Dark Theme</string>
+    <string name="darkdesc">Enable/Disable dark theme</string>
 
     <string-array name="spinner_items">
         <item>@string/page1</item>

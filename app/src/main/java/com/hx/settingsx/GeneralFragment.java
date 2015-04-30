@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,13 @@ public class GeneralFragment extends Fragment {
         final SeekBar vibratorBar = (SeekBar) rootView.findViewById(R.id.vibrator_bar);
         final TextView vibratorValue = (TextView) rootView.findViewById(R.id.vibrator_value);
         final CheckBox dt2w = (CheckBox) rootView.findViewById(R.id.dt2w_ed);
+        final CardView card1 = (CardView) rootView.findViewById(R.id.c1);
+        final CardView card2 = (CardView) rootView.findViewById(R.id.c2);
+
+        if(SettingsFragment.theme==1) {
+            card1.setCardBackgroundColor(0xff424242);
+            card2.setCardBackgroundColor(0xff424242);
+        }
 
         if (new File(Constants.VIBRATOR_LEVEL).exists()) {
             vibratorLevel = Integer.valueOf(Utils.readOneLine(Constants.VIBRATOR_LEVEL));

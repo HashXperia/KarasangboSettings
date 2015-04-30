@@ -1,5 +1,7 @@
 package com.hx.settingsx;
 
+import android.graphics.drawable.ColorDrawable;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ public class HelloFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_hello, container, false);
+
         return rootView;
     }
 }

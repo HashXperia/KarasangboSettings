@@ -58,6 +58,9 @@ public class DeviceFragment extends Fragment {
             }
 
             TextView infoTitle = (TextView) rootView.findViewById(R.id.info_title);
+            if(SettingsFragment.theme==1) {
+                infoTitle.setTextColor(getResources().getColor(R.color.white));
+            }
             TextView infoText = (TextView) rootView.findViewById(R.id.info_text);
             Process process = null;
             String sb = null;
